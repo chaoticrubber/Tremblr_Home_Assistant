@@ -1,0 +1,101 @@
+esphome:
+  name: TremblrControl
+
+esp32:
+  board: nodemcu-32s
+  
+remote_transmitter:
+  pin: GPIO32
+  carrier_duty_percent: 100%
+
+remote_receiver:
+  pin: 
+    number: GPIO33
+  dump: rc_switch
+  # Settings to optimize recognition of RF devices
+  tolerance: 50%
+  filter: 50us
+  idle: 4ms
+  buffer_size: 10kb
+  memory_blocks: 3
+
+# Individual switches
+button:
+  - platform: template
+    name: "AIR +"
+    icon: hass:plus
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '010101011111000000000011'
+          protocol: 1
+          repeat:
+            times: 20
+            wait_time: 50us
+
+  - platform: template
+    name: "AIR -"
+    icon: hass:minus
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '010101011111001100000000'
+          protocol: 1
+          repeat:
+           times: 20
+           wait_time: 50us
+           
+  - platform: template
+    name: "Faster"
+    icon: hass:plus
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '010101011111000011000000'
+          protocol: 1
+          repeat:
+           times: 10
+           wait_time: 0s
+
+  - platform: template
+    name: "Slower"
+    icon: hass:plus
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '010101011111000000110000'
+          protocol: 1
+          repeat:
+           times: 10
+           wait_time: 0s
+
+
+
+  - platform: template
+    name: "ON / OFF"
+    icon: hass:power
+    on_press:
+      - remote_transmitter.transmit_rc_switch_raw:
+          code: '010101011111000000001100'
+          protocol: 1 
+          repeat:
+           times: 10
+           wait_time: 0s
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "nQEfGPsrSw9LLdTeI36Nl09zEHooO7e8SKia14XQ5bE="
+
+ota:
+  password: "5f5d94d6a0dd886104e1b5c3abc878d8"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Airconcontrol Fallback Hotspot"
+    password: "0hXfqXDfvI3U"
+
+captive_portal:
+    
