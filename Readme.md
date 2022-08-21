@@ -4,3 +4,5 @@ You will need an ESP32 (32s have a better atenna library inside them so are idea
 
 the tremblr uses 315mhz RF so you will need a transmitter board that supports 315mhz, something like this
 - https://www.amazon.co.uk/gp/product/B0B1ZGXSL8/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1
+
+the codes in the YAML are for a B series remote, if you have an A series remote you will need to capture those and then 
