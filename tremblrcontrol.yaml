@@ -1,8 +1,11 @@
 esphome:
   name: TremblrControl
 
+  
+
 esp32:
   board: nodemcu-32s
+  
   
 remote_transmitter:
   pin: GPIO32
@@ -18,6 +21,8 @@ remote_receiver:
   idle: 4ms
   buffer_size: 10kb
   memory_blocks: 3
+
+
 
 # Individual switches
 button:
@@ -51,7 +56,7 @@ button:
           code: '010101011111000011000000'
           protocol: 1
           repeat:
-           times: 10
+           times: 6
            wait_time: 0s
 
   - platform: template
@@ -62,7 +67,7 @@ button:
           code: '010101011111000000110000'
           protocol: 1
           repeat:
-           times: 10
+           times: 6
            wait_time: 0s
 
 
@@ -83,7 +88,7 @@ logger:
 # Enable Home Assistant API
 api:
   encryption:
-    key: "nQEfGPsrSw9LLdTeI36Nl09zEHooO7e8SKia14XQ5bE="
+    key: "5z650ONO4pry7s4tvH8msacZvud1nLiLiG8zin5NkGs="
 
 ota:
   password: "5f5d94d6a0dd886104e1b5c3abc878d8"
